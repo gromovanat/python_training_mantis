@@ -17,6 +17,7 @@ class ProjectHelper:
             self.open_manage_page()
             wd.find_element_by_link_text("Manage Projects").click()
 
+
     def open_new_project_form(self):
         wd = self.app.wd
         wd.find_element_by_xpath("//input[@value='Create New Project']").click()
@@ -55,3 +56,9 @@ class ProjectHelper:
                                     view_status=view_status, description=description))
         return list(l)
 
+    def delete_project_by_index(self, index):
+        wd = self.app.wd
+        self.open_projects_page()
+        wd.find_element_by_xpath(f'//table[@class="width100"][2]//tbody//tr[{index+3}]//td//a').click()
+        wd.find_element_by_xpath("//input[@value='Delete Project']").click()
+        wd.find_element_by_xpath("//input[@value='Delete Project']").click()
