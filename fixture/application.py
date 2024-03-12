@@ -3,21 +3,23 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from fixture.session import SessionHelper
+from fixture.project import ProjectHelper
 
 
 class Application:
 
     def __init__(self, browser, base_url):
-        if browser == "firefox":
+       if browser == "firefox":
             self.wd = webdriver.Firefox()
-        elif browser == "chrome":
+       elif browser == "chrome":
             self.wd = webdriver.Chrome()
-        elif browser == "ie":
+       elif browser == "ie":
             self.wd = webdriver.Ie()
-        else:
+       else:
             raise ValueError("Unrecognized browser %s" % browser)
-        self.session = SessionHelper(self)
-        self.base_url = base_url
+       self.session = SessionHelper(self)
+       self.project = ProjectHelper(self)
+       self.base_url = base_url
 
     def is_valid(self):
         try:
